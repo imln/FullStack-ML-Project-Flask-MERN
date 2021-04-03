@@ -1,0 +1,15 @@
+{
+    "data_columns": [
+        "PassengerId",
+        "Pclass",
+        "Sex_male",
+        "Sex_female",
+        "Age",
+        "SibSp",
+        "Parch",
+        "Fare",
+        "Embarked_S",
+        "Embarked_C",
+        "Embarked_Q"
+    ]
+}
