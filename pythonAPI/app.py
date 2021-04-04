@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, Response
+from flask import Flask, jsonify, Response, request
+import json
 import joblib
 import pandas as pd
 import numpy as np
@@ -9,22 +10,31 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 app = Flask(__name__)
 
-@app.route('/api/titanic/predict')
+@app.route('/api/titanic/predict',methods=['POST'])
 def predict():
-    # json_ = request.json
-    # query_df = pd.DataFrame(json_)
-    # query = pd.get_dummies(query_df)
+    print("Api called...")
+    print(request.json)
     PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked = 5,3,'Sex_female',20,1,0,250,'Embarked_C'
     response = jsonify({
-        'passenger_survived': util.get_passenger_survived_predict(PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked)
+        'passengerSurvived': util.get_passenger_survived_predict(PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked)
     })
     response.headers.add('Access-Control-Allow-Origin', '*')
-
+    
     return response
 
 @app.route("/api/titanic/plot/age_hist_plot.png")
 def hist_plot_png():
     return Response(util.create_age_hist_plot(), mimetype='image/png')
+
+
+@app.route("/api/hello",methods=['POST'])
+def hello():
+    response = jsonify({
+        'api-response': 'hello i am fine ',
+    })
+    response.headers.add('Access-Control-Allow-Origin', '*')
+
+    return response
 
 
 

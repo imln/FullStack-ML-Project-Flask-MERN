@@ -1,3 +1,4 @@
 pythonAPI/mlapi
 pythonAPI/__pycache__/
 pythonAPI/dataset/titanic.csv
+server/node_modules/
