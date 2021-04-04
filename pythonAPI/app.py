@@ -13,8 +13,9 @@ app = Flask(__name__)
 @app.route('/api/titanic/predict',methods=['POST'])
 def predict():
     print("Api called...")
-    print(request.json)
-    PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked = 5,3,'Sex_female',20,1,0,250,'Embarked_C'
+    dataML = request.json
+    print(dataML)
+    PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked = dataML['passengerId'], dataML['pclass'], dataML['sex'], dataML['age'], dataML['sibSp'], dataML['parch'], dataML['fare'], dataML['embarked']
     response = jsonify({
         'passengerSurvived': util.get_passenger_survived_predict(PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked)
     })

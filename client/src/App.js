@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Container, Form, Col, Row, Alert } from 'react-bootstrap'
+import { Container, Form, Col, Row, Alert, Image } from 'react-bootstrap'
 
 
 function App() {
@@ -57,7 +57,6 @@ function App() {
     <Container>
       <Row><h3>Titanic Survival Prediction</h3></Row>
       <Row>
-        <Col></Col>
         <Col xs={5}>
 
           <Form onSubmit={formSubmitEvent}>
@@ -113,7 +112,10 @@ function App() {
           </Alert>
 
         </Col>
-        <Col></Col>
+        <Col>
+          <p>Age Histogram</p>
+          <Image src="http://127.0.0.1:5000/api/titanic/plot/age_hist_plot.png" thumbnail />
+        </Col>
       </Row>
     </Container>
 
