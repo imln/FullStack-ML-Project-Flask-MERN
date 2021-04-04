@@ -17,16 +17,14 @@ __dataset = None
 def get_passenger_survived_predict(passengerId, pclass, sex, age, sibSp, parch, fare, embarked):
     try:
         sex_index = __data_columns.index(sex)
-    
     except:
         sex_index = -1
 
     try:
         emb_index = __data_columns.index(embarked)
-    
     except:
         emb_index = -1
-    
+
     x = np.zeros(len(__data_columns))
 
     x[0] = passengerId
@@ -38,26 +36,26 @@ def get_passenger_survived_predict(passengerId, pclass, sex, age, sibSp, parch, 
 
     if sex_index >= 0:
         x[sex_index] = 1
-    
+
     if emb_index >= 0:
         x[emb_index] = 1
-
-    a = np.asarray(x).reshape(1,-1)
+    
+    a = np.asarray(x).reshape(1, -1)
     prediction = __model.predict(a)
     res = [int(e) for e in prediction]
     return res[0]
 
+
 def create_age_hist_plot():
     df = pd.read_csv('./dataset/titanic.csv')
-    num_cols = df.select_dtypes([np.int64,np.float64]).columns.tolist()
+    num_cols = df.select_dtypes([np.int64, np.float64]).columns.tolist()
     num_cols.remove('PassengerId')
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
-    axis.hist(df['Age']) 
+    axis.hist(df['Age'])
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return output.getvalue()
-
 
 
 def load_saved_data():
@@ -75,7 +73,6 @@ def load_saved_data():
     with open("./dataset/titanic.csv", 'rb') as f:
         __dataset = pd.read_csv(f)
     print("loading saved data... done")
-
 
 
 if __name__ == '__main__':

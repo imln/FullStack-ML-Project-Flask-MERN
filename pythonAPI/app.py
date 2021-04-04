@@ -42,4 +42,4 @@ def hello():
 
 if __name__ == "__main__":
     util.load_saved_data()
-    app.run(debug=True)
+    app.run()
